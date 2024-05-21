@@ -1,0 +1,30 @@
+[package]
+authors = ["rocpe <rp.rp@keemail.me>"]
+edition = "2018"
+readme = "README.md"
+name = "black-parrot"
+version = "0.1.0"
+
+[dependencies]
+cfg-if = "1.0.0"
+cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.4"
+log = "0.4.21"
+panic-probe = { version = "0.3.2", features = ["print-defmt"] }
+nb = "1.1.0"
+defmt-rtt = "0.4.1"
+defmt = "0.3.7"
+
+[dependencies.stm32f4xx-hal]
+version = "0.20.0"
+features = ["stm32f401"]
+
+[[bin]]
+name = "black-parrot"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true      # symbols are nice and they don't increase the size on Flash
+lto = true        # better optimizations
